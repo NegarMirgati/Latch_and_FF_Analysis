@@ -9,10 +9,11 @@
 +Vdd = 1V
 
 .global	Vdd
+.temp	25
 ****** Sources ******
 Vdd	    1	0  	1
-Vclk	clk	0	pulse	0	1	0n	0p		0p		1n	2n
-VD      D   0   pulse	0	1	0n	0p		0p		50n	100n
+Vclk	clk	0	pulse	0	1	0n	50p		50p		1n	2n
+VD      D   0   pulse	0	1	0n	50p		50p		50n	100n
 ************************ INVERTER ************************************
 .SUBCKT MyInverter in	GND 	NODE	OUT
 

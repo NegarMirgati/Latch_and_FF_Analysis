@@ -11,7 +11,7 @@
 .global	Vdd
 ****** Sources ******
 Vdd	    1	0  	1
-Vs      s    0	pulse	0	1	0n	0p		0p		50n	100n  
+Vs      s    0	pulse	0	1	0n	50p		50p		50n	100n  
 Vr      r    0	DC      0
 Vclk	clk	 0	pulse	0	1	0n	0p		0p		2n	4n
 
@@ -60,6 +60,14 @@ X4    0    1    out2    Qbar    Q      MyNor
 
 ***** Type of Analysis *****
 .tran	3ns     500ns   1ns
+
+.MEASURE TRAN t_rise
++ trig V(Q) val = '0.1*Vdd'  rise = 1
++ targ V(Q) val = '0.9*Vdd'  rise = 1
+
+.MEASURE TRAN t_fall
++ trig V(Q) val = '0.9*Vdd'  fall = 1
++ targ V(Q) val = '0.1*Vdd'  fall = 1
 
 
 .END
