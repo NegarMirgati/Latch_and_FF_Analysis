@@ -20,7 +20,7 @@ Vclk	clk	 0	pulse	0	1	0n	50p		50p		2n	4n
 .SUBCKT MyNand inA inB GND NODE AOUT
 Mp21     AOUT     inB     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 Mp22     AOUT     inA     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
-Mn23     AOUT     inA     mid     mid     nmos    l ='Lmin'    w ='2*Lmin'
+Mn23     AOUT     inA     mid     GND     nmos    l ='Lmin'    w ='2*Lmin'
 Mn24     mid      inB     GND     GND     nmos    l ='Lmin'    w ='2*Lmin'
 .ENDS MyNand
 
@@ -44,7 +44,7 @@ CL    andout   0    10f
 .SUBCKT    MyNor     GND    VDD     A       B       out
 
 Mp11   mid    A    VDD    VDD    pmos    w='12*Lmin'    L=Lmin
-Mp12   out    B    mid    mid    pmos    w='12*Lmin'    L=Lmin 
+Mp12   out    B    mid    VDD    pmos    w='12*Lmin'    L=Lmin 
 Mn13   out    B    GND    GND    nmos    w='2*Lmin'     L=Lmin
 Mn14   out    A    GND    GND    nmos    w='2*Lmin'     L=Lmin 
 CL out 0  10f 
