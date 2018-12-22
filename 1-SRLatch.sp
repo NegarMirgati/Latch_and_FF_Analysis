@@ -12,8 +12,8 @@
 ****** Sources ******
 Vdd	    1	0  	1
 Vs      s    0	pulse	0	1	0n	50p		50p		50n	100n  
-Vr      r    0	DC      0
-Vclk	clk	 0	pulse	0	1	0n	0p		0p		2n	4n
+Vr      r    0	pulse	0	1	60n	50p		50p		20n	300u  
+Vclk	clk	 0	pulse	0	1	0n	50p		50p		2n	4n
 
 **************************** NAND GATE ****************************
 
