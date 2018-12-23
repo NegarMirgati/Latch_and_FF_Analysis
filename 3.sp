@@ -11,15 +11,16 @@
 .global	Vdd
 ****** Sources ******
 Vdd	    1	0  	1
-Vclk	clk	 0	pulse	0	1	0n	0p		0p		10n	30n
-Vdata   data 0  pulse	0	1	0n	0p		0p		50n	100n
+Vclk	clk	 0	pulse	0	1	0n	50p		50p		10n	30n
+Vdata   data 0  pulse	0	1	0n	50p		50p		50n	100n
 
 **************************** NAND2 GATE ****************************
 
 .SUBCKT MyNand inA inB GND NODE AOUT
 Mp11     AOUT     inB     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 Mp12     AOUT     inA     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
-Mn13     AOUT     inA     mid     mid     nmos    l ='Lmin'    w ='2*Lmin'
+
+Mn13     AOUT     inA     mid     GND     nmos    l ='Lmin'    w ='2*Lmin'
 Mn14     mid      inB     GND     GND     nmos    l ='Lmin'    w ='2*Lmin'
 CL      AOUT  0  5f 
 .ENDS MyNand
@@ -31,8 +32,8 @@ Mp21     AOUT     inA     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 Mp22     AOUT     inB     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 Mp23     AOUT     inC     NODE    NODE    pmos    l ='Lmin'    w ='2*Lmin'
 
-Mn24     AOUT     inA     mid     mid     nmos    l ='Lmin'    w ='2*Lmin'
-Mn25     mid      inB     mid2    mid2    nmos    l ='Lmin'    w ='2*Lmin'
+Mn24     AOUT     inA     mid     GND     nmos    l ='Lmin'    w ='2*Lmin'
+Mn25     mid      inB     mid2    GND     nmos    l ='Lmin'    w ='2*Lmin'
 Mn26     mid2     inC     GND     GND     nmos    l ='Lmin'    w ='2*Lmin'
 CL      AOUT 0  5f 
 .ENDS MyNand3
@@ -55,5 +56,8 @@ Xnand6    Q          nand3out    0    1    Qbar         MyNand
 .MEASURE TRAN t_fall
 + trig V(Q) val = '0.9'  fall = 2
 + targ V(Q) val = '0.1'  fall = 2
+
+.MEASURE highest_freq param = '1 /(t_rise + t_fall)'
+
 
 .END
