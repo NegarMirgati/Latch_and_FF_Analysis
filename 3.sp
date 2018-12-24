@@ -11,8 +11,8 @@
 .global	Vdd
 ****** Sources ******
 Vdd	    1	0  	1
-Vclk	clk	 0	pulse	0	1	0n	50p		50p		10n	30n
-Vdata   data 0  pulse	0	1	0n	50p		50p		50n	100n
+Vclk	clk	 0	pulse	0	1	1n	50p		50p		2n	4n
+Vdata   data 0  pulse	0	1	0n	50p		50p		20n	300u
 
 **************************** NAND2 GATE ****************************
 
@@ -47,7 +47,7 @@ Xnand5    nand2out    Qbar       0    1    Q            MyNand
 Xnand6    Q          nand3out    0    1    Qbar         MyNand
 
 ***** Type of Analysis *****
-.tran	3ns     200ns   1ns
+.tran	3ns     50ns 
 
 .MEASURE TRAN t_rise
 + trig V(Q) val = '0.1'  rise = 1
@@ -56,6 +56,10 @@ Xnand6    Q          nand3out    0    1    Qbar         MyNand
 .MEASURE TRAN t_fall
 + trig V(Q) val = '0.9'  fall = 2
 + targ V(Q) val = '0.1'  fall = 2
+
+.MEASURE TRAN t_clk_to_Q
++ trig V(clk) val = '0.5*Vdd'  rise = 6
++ targ V(Q) val = '0.5*Vdd'    fall = 1
 
 .MEASURE highest_freq param = '1 /(t_rise + t_fall)'
 

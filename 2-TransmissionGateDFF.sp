@@ -61,5 +61,9 @@ X2Inv   OUT2    0    1    Q     MyInverter
 + trig V(Q) val = '0.9*Vdd'  fall = 1
 + targ V(Q) val = '0.1*Vdd'  fall = 1
 
+.MEASURE TRAN t_setup
++ trig V(D) val = '0.5*Vdd'     rise = 1
++ targ V(OUT) val = '0.5*Vdd'  rise = 1
+
 
 .END

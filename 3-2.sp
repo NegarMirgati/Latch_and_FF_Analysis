@@ -11,8 +11,8 @@
 .global	Vdd
 ****** Sources ******
 Vdd	    1	0  	1
-Vb      b   0   dc  0
-VbBar   bBar 0  dc  1
+Vb      b   0   dc  1
+VbBar   bBar 0  dc  0
 Vclk	clk	 0	pulse	0	1	0n	0p		0p		10n	30n
 Vdata   data 0  pulse	0	1	0n	0p		0p		50n	100n
 

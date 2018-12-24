@@ -59,7 +59,7 @@ X4    0    1    out2    Qbar    Q      MyNor
 
 
 ***** Type of Analysis *****
-.tran	3ns     500ns   1ns
+.tran	3ns     200ns   1ns  
 
 .MEASURE TRAN t_rise
 + trig V(Q) val = '0.1*Vdd'  rise = 1
@@ -68,6 +68,10 @@ X4    0    1    out2    Qbar    Q      MyNor
 .MEASURE TRAN t_fall
 + trig V(Q) val = '0.9*Vdd'  fall = 1
 + targ V(Q) val = '0.1*Vdd'  fall = 1
+
+.MEASURE TRAN t_setup
++ trig V(s) val = '0.5*Vdd'     rise = 1
++ targ V(out1) val = '0.5*Vdd'  rise = 13
 
 
 .END
