@@ -11,10 +11,10 @@
 .global	Vdd
 ****** Sources ******
 Vdd	    1	0  	1
-Vb      b   0   dc  1
-VbBar   bBar 0  dc  0
-Vclk	clk	 0	pulse	0	1	0n	0p		0p		10n	30n
-Vdata   data 0  pulse	0	1	0n	0p		0p		50n	100n
+Vb      b   0   dc  0
+VbBar   bBar 0  dc  1
+Vclk	clk	 0	pulse	0	1	0n  50p		50p		2n	4n
+Vdata   data 0  pulse	0	1	2n	50p		50p		1n	2n
 
 ************************ INVERTER ************************************
 .SUBCKT MyInverter in	GND 	NODE	OUT
@@ -88,6 +88,15 @@ XFF1    combOut  clk  0    1    out    outbar          MyFF
 ***** Type of Analysis *****
 .tran	3ns     200ns   1ns
 
+.MEASURE TRAN t_rise
++ trig V(out) val = '0.1*Vdd'  rise = 2
++ targ V(out) val = '0.9*Vdd'  rise = 2
+
+.MEASURE TRAN t_fall
++ trig V(out) val = '0.9*Vdd'  fall = 2
++ targ V(out) val = '0.1*Vdd'  fall = 2
+
+.MEASURE TRAN max_frequency param = '1 / (t_fall + t_rise)'
 
 
 .END
