@@ -61,7 +61,9 @@ Xnand6    Q          nand3out    0    1    Qbar         MyNand
 + trig V(clk) val = '0.5*Vdd'  rise = 6
 + targ V(Q) val = '0.5*Vdd'    fall = 1
 
-.MEASURE highest_freq param = '1 /(t_rise + t_fall)'
+.MEASURE TRAN t_setup
++ trig V(data) val = '0.5*Vdd'     fall = 1
++ targ V(nand1out) val = '0.5*Vdd' fall = 1
 
 
 .END
